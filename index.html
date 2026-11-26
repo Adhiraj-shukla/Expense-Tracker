@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f766e">
+  <meta name="description" content="Kharcha Tracker - track monthly bills, due-date reminders, salary and budget.">
+  <title>Kharcha Tracker - Monthly Bills &amp; Budget</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">₹</span>
+        <div>
+          <h1>Kharcha Tracker</h1>
+          <p class="brand-sub">Bills, budget &amp; reminders</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn" id="btnAlerts" title="Enable reminder notifications" aria-label="Enable reminder notifications">🔔</button>
+        <button class="icon-btn" id="btnBackup" title="Backup and restore" aria-label="Backup and restore">💾</button>
+        <button class="icon-btn" id="btnTheme" title="Switch light / dark theme" aria-label="Switch theme">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="month-bar" aria-label="Month selector">
+      <button class="btn ghost" id="prevMonth" aria-label="Previous month">‹</button>
+      <div class="month-label">
+        <h2 id="monthLabel">Month</h2>
+        <button class="link-btn" id="btnToday">Go to this month</button>
+      </div>
+      <button class="btn ghost" id="nextMonth" aria-label="Next month">›</button>
+    </section>
+
+    <section id="reminders" aria-label="Bill reminders" aria-live="polite"></section>
+
+    <section class="summary" aria-label="Monthly summary">
+      <div class="cards" id="cards"></div>
+      <div class="budget-box" id="budgetBox"></div>
+    </section>
+
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button role="tab" class="tab active" data-tab="bills" aria-selected="true">Bills</button>
+      <button role="tab" class="tab" data-tab="expenses" aria-selected="false">Expenses</button>
+      <button role="tab" class="tab" data-tab="insights" aria-selected="false">Insights</button>
+    </nav>
+
+    <section id="tab-bills" class="panel">
+      <div class="toolbar">
+        <div class="filters" id="filters" role="group" aria-label="Filter bills">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="unpaid">Unpaid</button>
+          <button class="chip" data-filter="overdue">Overdue</button>
+          <button class="chip" data-filter="paid">Paid</button>
+        </div>
+        <input type="search" id="search" class="search" placeholder="Search bills…" aria-label="Search bills" maxlength="40">
+      </div>
+      <ul class="list" id="billList"></ul>
+    </section>
+
+    <section id="tab-expenses" class="panel" hidden>
+      <ul class="list" id="expenseList"></ul>
+    </section>
+
+    <section id="tab-insights" class="panel" hidden>
+      <div id="insights"></div>
+    </section>
+
+    <footer class="foot">
+      <p>Your data stays in this browser (localStorage). Use 💾 Backup to move it to another device.</p>
+      <p>Summer Training Project · BCA Sem 5 · Hi-tech Institute of Engineering and Technology</p>
+    </footer>
+  </main>
+
+  <button class="fab" id="btnAdd" aria-label="Add bill or expense"><span>＋</span><b>Add</b></button>
+
+  <div id="modalRoot"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
